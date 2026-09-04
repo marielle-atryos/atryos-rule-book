@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atryos & Astreos — Employee &amp; Contractor Handbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#176d8c;
+    --teal-dark:#0E4A5F;
+    --teal-soft:#e7f1f4;
+    --ink:#1c2a2f;
+    --ink-soft:#5b6b70;
+    --paper:#f6f8f8;
+    --card:#ffffff;
+    --line:#e1e8ea;
+    --upd:#0e7a5f;
+    --upd-bg:#e6f5ef;
+    --upd-line:#a9dcc7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  header.hero{
+    background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);
+    color:#fff;
+    padding:48px 24px 40px;
+    text-align:center;
+  }
+  header.hero .eyebrow{
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    opacity:.85;
+    margin-bottom:10px;
+  }
+  header.hero h1{
+    font-size:32px;
+    font-weight:800;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  header.hero p{
+    font-size:14.5px;
+    max-width:580px;
+    margin:0 auto;
+    opacity:.92;
+    line-height:1.6;
+  }
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px 80px;}
+
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:44px 0 18px;
+  }
+  .section-label .tag{
+    background:var(--teal-dark);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:7px 14px;
+    border-radius:5px;
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .section-label .rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .section-intro{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:-6px 0 20px;
+    line-height:1.6;
+  }
+
+  .cw-toggle{
+    background:none;
+    border:1px solid var(--line);
+    color:var(--teal-dark);
+    font-family:'Poppins',sans-serif;
+    font-size:11.5px;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .cw-toggle:hover{background:var(--teal-soft);}
+  .cw-toggle .chevron{
+    display:inline-block;
+    transition:transform .18s ease;
+    font-size:10px;
+  }
+  .cw-toggle.is-collapsed .chevron{transform:rotate(-90deg);}
+  .cw-content{
+    overflow:hidden;
+    max-height:none;
+  }
+  .cw-content.collapsed{
+    display:none;
+  }
+
+  /* location selector */
+  .loc-picker{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:28px;
+    justify-content:center;
+  }
+  .loc-chip{
+    background:rgba(255,255,255,.12);
+    border:1.5px solid rgba(255,255,255,.35);
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:all .18s ease;
+  }
+  .loc-chip:hover{background:rgba(255,255,255,.2);}
+  .loc-chip.active{
+    background:#fff;
+    color:var(--teal-dark);
+    border-color:#fff;
+  }
+  .loc-chip .flag{font-size:16px;}
+
+  /* category groups */
+  .category{margin-bottom:26px;}
+  .category-title{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    margin:0 0 10px;
+    padding-left:2px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .category-title .icon{font-size:15px;}
+
+  .rule-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    border-radius:8px;
+    padding:16px 18px;
+    margin-bottom:10px;
+    display:flex;
+    gap:14px;
+  }
+  .rule-card .icon-badge{
+    flex:0 0 auto;
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    background:var(--teal-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    margin-top:1px;
+  }
+  .rule-card .body{flex:1;min-width:0;}
+  .rule-card .title{
+    font-size:14.5px;
+    font-weight:700;
+    color:var(--ink);
+    margin:0 0 4px;
+  }
+  .rule-card .desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    margin:0;
+  }
+  .rule-card .desc strong{
+    color:var(--teal-dark);
+    font-weight:700;
+  }
+  .rule-card .desc em{
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .rule-card .desc ul{margin:6px 0 0;padding-left:18px;}
+  .rule-card .desc li{margin-bottom:2px;}
+
+  .updated-flag{
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.03em;
+    color:var(--upd);
+    background:var(--upd-bg);
+    border:1px solid var(--upd-line);
+    padding:2px 8px;
+    border-radius:12px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .rule-card.is-updated{border-left-color:var(--upd);}
+  .rule-card.is-updated .icon-badge{background:var(--upd-bg);}
+
+  .law-flag{
+    display:inline-block;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.03em;
+    color:#1c5aa6;
+    background:#eaf1fb;
+    border:1px solid #bcd4f2;
+    padding:2px 8px;
+    border-radius:12px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .rule-card .desc .note{
+    display:block;
+    margin-top:8px;
+    font-size:12.5px;
+    font-style:italic;
+    color:var(--ink-soft);
+    padding-top:8px;
+    border-top:1px dashed var(--line);
+  }
+
+  /* leave table (nested inside the Leave Requests card) */
+  .leave-table-wrap{
+    overflow-x:auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:4px;
+    margin-top:12px;
+  }
+  table.leave-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+    min-width:560px;
+  }
+  table.leave-table th{
+    background:var(--teal-dark);
+    color:#fff;
+    font-weight:600;
+    text-align:left;
+    padding:9px 11px;
+  }
+  table.leave-table td{
+    padding:11px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink-soft);
+    font-family:'Courier New',monospace;
+    font-size:12px;
+  }
+  table.leave-table tr:last-child td{border-bottom:none;}
+  .leave-note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:10px 2px 0;
+    line-height:1.6;
+  }
+
+  table.tier-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+  }
+  table.tier-table th{
+    background:var(--teal-dark);
+    color:#fff;
+    font-weight:600;
+    text-align:left;
+    padding:9px 11px;
+  }
+  table.tier-table td{
+    padding:11px;
+    border-bottom:1px solid var(--line);
+    color:var(--ink-soft);
+    font-family:'Poppins',sans-serif;
+    font-size:12.5px;
+    line-height:1.55;
+    vertical-align:top;
+  }
+  table.tier-table td strong{color:var(--teal-dark);}
+  table.tier-table tr:last-child td{border-bottom:none;}
+  .tier-table-wrap{
+    overflow-x:auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:4px;
+    margin-top:12px;
+  }
+
+  /* location panels */
+  .loc-panel{display:none;}
+  .loc-panel.active{display:block;}
+  .loc-heading{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .loc-heading .flag-big{font-size:26px;}
+  .loc-heading h2{
+    font-size:22px;
+    font-weight:800;
+    margin:0;
+    color:var(--teal-dark);
+  }
+
+  footer{
+    text-align:center;
+    padding:30px 20px 50px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  footer strong{color:var(--teal-dark);}
+
+  @media (max-width:600px){
+    header.hero h1{font-size:25px;}
+    .loc-chip{font-size:13px;padding:9px 14px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">🏢 Atryos DMCC · Astreos International Kft</div>
+  <h1>Employee &amp; Contractor Handbook &amp; Workplace Guidelines</h1>
+  <p>A shared reference for how we work together — company-wide standards that apply to everyone, plus specific guidelines for our Dubai, Budapest, Poland, and Manila teams. Select your office location below to view what applies to you.</p>
+
+  <div class="loc-picker" id="locPicker">
+    <button class="loc-chip active" data-loc="all" type="button"><span class="flag">🌐</span> All</button>
+    <button class="loc-chip" data-loc="dubai" type="button"><span class="flag">🇦🇪</span> Dubai</button>
+    <button class="loc-chip" data-loc="budapest" type="button"><span class="flag">🇭🇺</span> Budapest</button>
+    <button class="loc-chip" data-loc="poland" type="button"><span class="flag">🇵🇱</span> Poland</button>
+    <button class="loc-chip" data-loc="manila" type="button"><span class="flag">🇵🇭</span> Manila</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ALL LOCATIONS -->
+  <div class="section-label">
+    <span class="tag">🌐 Company-Wide Standards</span>
+    <span class="rule"></span>
+    <button class="cw-toggle" id="cwToggle" type="button" aria-expanded="true">
+      <span class="chevron">▾</span> <span id="cwToggleLabel">Collapse</span>
+    </button>
+  </div>
+  <p class="section-intro">The following standards apply to every Atryos and Astreos employee and contractor, regardless of office location.</p>
+
+  <div class="category cw-content" id="companyWideContent">
+    <div class="rule-card">
+      <div class="icon-badge">🚫</div>
+      <div class="body">
+        <p class="title">Zero-Tolerance Policy</p>
+        <p class="desc">Discrimination, harassment, or any form of inappropriate behaviour <strong>will not be tolerated</strong> and may result in <strong>disciplinary action</strong>.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">🔒</div>
+      <div class="body">
+        <p class="title">Confidentiality</p>
+        <p class="desc">All employees and contractors are bound by the confidentiality terms outlined in their <strong>signed Non-Disclosure Agreement (NDA)</strong>.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">🤝</div>
+      <div class="body">
+        <p class="title">Professional Conduct &amp; Communication</p>
+        <p class="desc">Employees and contractors are expected to contribute to a <strong>professional, respectful, and constructive working environment</strong> with management, colleagues, suppliers, and customers alike, and to communicate in a professional and constructive manner at all times. When engaging with colleagues — particularly those new to the Company — please exercise sound judgment and allow others the space to form their own views and experiences.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">🩺</div>
+      <div class="body">
+        <p class="title">Health &amp; Safety</p>
+        <p class="desc">All employees and contractors are expected to <strong>follow all safety guidelines</strong> to help maintain a secure and healthy working environment for everyone.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">👏</div>
+      <div class="body">
+        <p class="title">Recognition &amp; Constructive Feedback</p>
+        <p class="desc">Good work should be recognized openly, while constructive feedback, correction, or concerns about performance are best addressed <strong>privately and respectfully</strong>, out of the view of other colleagues. This approach helps maintain trust and psychological safety across the team. If you feel this hasn't been followed, you're encouraged to <strong>raise it with your manager</strong> — this feedback will be taken seriously and handled with discretion.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">⏱️</div>
+      <div class="body">
+        <p class="title">Time Tracking Tool</p>
+        <p class="desc">The Company's time tracking tool must be used consistently, <strong>at all times</strong>.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">🕒</div>
+      <div class="body">
+        <p class="title">Use of Working Hours</p>
+        <p class="desc">Employees and contractors are expected to use working hours responsibly and remain focused on their duties, responsibilities, and Company priorities. Personal activities should be limited to reasonable breaks and <strong>should not interfere with productivity, availability, deadlines, meetings</strong>, or the responsibilities of colleagues.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">💻</div>
+      <div class="body">
+        <p class="title">Use of Company Communication Tools</p>
+        <p class="desc">Company communication tools should be used professionally and appropriately, in a manner that supports effective teamwork and productivity. Reasonable social interaction is welcome; however, <strong>excessive personal conversations, gossip, inappropriate content</strong>, or communication that distracts from work should be avoided. <strong>Repeated or disruptive misuse may result in disciplinary action</strong>, particularly if it continues after a prior warning.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">📝</div>
+      <div class="body">
+        <p class="title">Pre-Approved Overtime Only</p>
+        <p class="desc">Overtime that has <strong>not been pre-approved will not be considered valid</strong>.</p>
+      </div>
+    </div>
+    <div class="rule-card is-updated">
+      <div class="icon-badge">🗓️</div>
+      <div class="body">
+        <p class="title">Leave Requests<span class="updated-flag">Updated</span></p>
+        <p class="desc">A single day of leave may be requested in advance or the day before. Requests for <strong>more than two days must be submitted at least two weeks in advance</strong>. While the Company's HR dashboard is still in development, all requests should follow the format below — no additional explanation is required.</p>
+        <p class="desc" style="margin-top:10px;"><strong>Send your request to:</strong></p>
+        <ul>
+          <li><strong>Management / Marketing:</strong> Mathieu and Marielle</li>
+          <li><strong>Development:</strong> Mathieu (Marielle in CC)</li>
+          <li><strong>Customer Service:</strong> Marielle &amp; Avemal (Mathieu in CC)</li>
+          <li><strong>Shipping:</strong> Mathieu &amp; Dori (Marielle in CC)</li>
+        </ul>
+        <div class="leave-table-wrap">
+          <table class="leave-table">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Total Working Days</th>
+                <th>Public Holidays in Between (if applicable)</th>
+                <th>Returning Day</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mon DD/MM/YYYY</td>
+                <td>Fri DD/MM/YYYY</td>
+                <td>___ days</td>
+                <td>___ days</td>
+                <td>Mon DD/MM/YYYY</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="leave-note">📌 Please use this exact format until the HR dashboard becomes available.</p>
+        <p class="desc" style="margin-top:14px;"><strong>Leave &amp; Business Coverage</strong> <em>(applies to leave requests of more than 1 day)</em>: Approval also depends on each department's <strong>business-activity calendar</strong>, set and communicated in advance by management. This <strong>differs by department</strong> — Customer Service and Marketing's busiest periods, for example, will not line up with Development's. Every leave request falls into one of three tiers:</p>
+        <div class="tier-table-wrap">
+          <table class="tier-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>When</th>
+                <th>Policy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🔴 <strong>Peak / Blackout</strong></td>
+                <td>The department's known busiest stretch</td>
+                <td><strong>No new leave granted</strong>, other than requests already approved before the blackout was announced, or genuine emergencies. Exceptions require <strong>joint approval from Mathieu, Marielle, and the relevant Department Manager</strong>.</td>
+              </tr>
+              <tr>
+                <td>🟡 <strong>Elevated / Managed</strong></td>
+                <td>Busy, but workable</td>
+                <td>Leave may be granted <strong>at the manager's discretion, case by case</strong>, only once a <strong>written coverage plan</strong> is in place confirming who will handle the employee's or contractor's responsibilities while they're away.</td>
+              </tr>
+              <tr>
+                <td>🟢 <strong>Standard</strong></td>
+                <td>Normal operating period</td>
+                <td>Standard leave rules apply, as outlined above.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="desc" style="margin-top:14px;"><strong>Reference: known busy periods by department</strong></p>
+        <div class="tier-table-wrap">
+          <table class="tier-table">
+            <thead>
+              <tr>
+                <th>Department</th>
+                <th>Busy Period</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Marketing</strong></td>
+                <td>15–30 days before the event</td>
+              </tr>
+              <tr>
+                <td><strong>Customer Service</strong></td>
+                <td>During and post-season</td>
+              </tr>
+              <tr>
+                <td><strong>Shipping</strong></td>
+                <td>During and post-season</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="leave-note">This tiering exists to protect service levels and team coverage during business-critical periods and will be <strong>strictly enforced</strong>. Department managers are responsible for publishing their team's calendar tiers in advance so requests can be planned accordingly.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">🎯</div>
+      <div class="body">
+        <p class="title">Performance &amp; Goals</p>
+        <p class="desc">Employees and contractors are encouraged to strive toward their set goals. Managers will provide <strong>ongoing support and regular feedback</strong> to help each team member grow and improve.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">📚</div>
+      <div class="body">
+        <p class="title">Learning &amp; Development</p>
+        <p class="desc">Employees and contractors are encouraged to take advantage of <strong>available training opportunities</strong> to build their skills and stay current with industry developments.</p>
+      </div>
+    </div>
+    <div class="rule-card">
+      <div class="icon-badge">📱</div>
+      <div class="body">
+        <p class="title">Responsible Social Media Use</p>
+        <p class="desc">Please be mindful of your online activity and <strong>avoid posting content that could negatively impact the Company's reputation</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION SPECIFIC -->
+  <div class="section-label">
+    <span class="tag">📍 Location-Specific Guidelines</span>
+    <span class="rule"></span>
+  </div>
+  <p class="section-intro">Select your office location above. These guidelines apply in addition to the company-wide standards listed above.</p>
+
+  <!-- DUBAI -->
+  <div class="loc-panel active" id="panel-dubai">
+    <div class="loc-heading"><span class="flag-big">🇦🇪</span><h2>Dubai</h2></div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏰</span> Attendance &amp; Time Tracking</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⏰</div>
+        <div class="body"><p class="title">Attendance &amp; Punctuality<span class="updated-flag">Updated</span></p>
+          <p class="desc">Standard working hours begin <strong>no earlier than 9:00 AM</strong> and <strong>no later than 11:00 AM</strong>. <strong>During Ramadan</strong>, adjusted working hours apply — regardless of arrival time, employees and contractors may <strong>not leave earlier than 4:00 PM</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🖥️</div>
+        <div class="body"><p class="title">Time In / Time Out Machine</p>
+          <p class="desc">All employees and contractors must use the time-in/time-out machine to log attendance. If a clock-in or clock-out is missed, please <strong>email Mathieu and Marielle</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🏠</div>
+        <div class="body"><p class="title">Remote Work Policy</p>
+          <p class="desc">Limited to <strong>2 days per year</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🏖️</span> Leave &amp; Holidays</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🤒</div>
+        <div class="body"><p class="title">Sick Leave<span class="updated-flag">Updated</span></p>
+          <p class="desc">A <strong>medical certificate is required at all times</strong> to validate sick leave. Compensation follows the terms specified in the employee's or contractor's <strong>contract</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">📆</div>
+        <div class="body"><p class="title">Maximum Consecutive Holiday</p>
+          <p class="desc">Up to <strong>21 consecutive week days</strong>.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🌴</div>
+        <div class="body"><p class="title">Annual Leave Entitlement<span class="updated-flag">Updated</span></p>
+          <p class="desc"><strong>24 days per year</strong>, plus 1 additional day for every completed year of service, up to a <strong>maximum of 4 additional days</strong> — as outlined in the employment contract.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🚫</div>
+        <div class="body"><p class="title">Untaken Holidays</p>
+          <p class="desc">Unused holiday days <strong>do not carry over</strong> to the following year and <strong>cannot be exchanged for cash</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">💸</div>
+        <div class="body"><p class="title">Unpaid Holidays</p>
+          <p class="desc">Employees and contractors may take unpaid leave, provided the total does not exceed <strong>5 days</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🔄</div>
+        <div class="body"><p class="title">Off-Setting Public Holidays</p>
+          <p class="desc">Welcomed, provided the request is <strong>submitted in advance and approved by Mathieu and Marielle</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏳</span> Overtime &amp; Extra Hours</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🌙</div>
+        <div class="body"><p class="title">Staying Late to Finish Work<span class="updated-flag">Updated</span></p>
+          <p class="desc">Staying late to finish a task should be <strong>a maximum of 1 hour</strong>. In that case, you may arrive or leave an hour early <strong>later that same week</strong> — except on Fridays. If more than 1 hour is needed, it must be <strong>approved in advance by Mathieu and Marielle</strong>, who will confirm when and how the extra time can be claimed. We encourage avoiding extra hours unless truly critical (e.g. testing a same-day dev release). <strong>Please inform Marielle and Mathieu</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">⛔</div>
+        <div class="body"><p class="title">No Accumulating Extra Time</p>
+          <p class="desc">Extra hours <strong>cannot be accumulated over a month</strong> to take a full day off — annual leave should be used for that purpose instead.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⚖️</div>
+        <div class="body"><p class="title">Working Time, Absences &amp; Time Balance<span class="updated-flag">Updated</span></p>
+          <p class="desc">This covers cases where an employee or contractor is <strong>unable to complete their scheduled working hours</strong> due to a personal emergency or another approved reason. Treatment depends on the scenario:</p>
+          <div class="tier-table-wrap">
+            <table class="tier-table">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Treatment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Unfit for work</strong></td>
+                  <td>Sick leave</td>
+                </tr>
+                <tr>
+                  <td><strong>Genuine emergency (Family / Personal)</strong></td>
+                  <td>Deducted from annual leave</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🌪️</span> Emergency Provisions</p>
+      <div class="rule-card">
+        <div class="icon-badge">🌪️</div>
+        <div class="body"><p class="title">Natural Calamities &amp; Unplanned Circumstances</p>
+          <p class="desc">If an employee or contractor is unable to attend the workplace due to a natural calamity, severe weather, or other unforeseen event, the following will apply, <strong>in order</strong>:</p>
+          <ul>
+            <li>Use of the employee's or contractor's <strong>two (2) Remote Work Credits</strong></li>
+            <li>Use of additional eligible days based on tenure</li>
+            <li>Use of available annual leave</li>
+            <li>Unpaid leave, once all other options are exhausted</li>
+          </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUDAPEST -->
+  <div class="loc-panel" id="panel-budapest">
+    <div class="loc-heading"><span class="flag-big">🇭🇺</span><h2>Budapest</h2></div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏰</span> Attendance &amp; Time Tracking</p>
+      <div class="rule-card">
+        <div class="icon-badge">⏰</div>
+        <div class="body"><p class="title">Attendance &amp; Punctuality</p>
+          <p class="desc">Employees and contractors should be <strong>at the office</strong> according to the schedule agreed with management. If you expect to be <strong>more than 30 minutes late</strong>, please <strong>alert management (Dori)</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🏠</div>
+        <div class="body"><p class="title">Remote Work Policy</p>
+          <p class="desc"><strong>Not applicable to Shipping team members</strong>, due to the nature of their work.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🏖️</span> Leave &amp; Holidays</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🤒</div>
+        <div class="body"><p class="title">Sick Leave<span class="updated-flag">Updated</span></p>
+          <p class="desc">A <strong>medical certificate is required at all times</strong> to validate sick leave. Compensation follows the terms specified in the employee's or contractor's contract.<span class="note">Note: statutory sick-pay support in Hungary is also governed by Hungarian labour law — the Company pays the first 15 working days per calendar year, after which the state sickness benefit (táppénz), administered through NEAK, may apply.</span></p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">📆</div>
+        <div class="body"><p class="title">Maximum Consecutive Holiday<span class="law-flag">🇭🇺 Per Hungarian Labor Law</span></p>
+          <p class="desc">Up to <strong>21 consecutive week days</strong>.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🌴</div>
+        <div class="body"><p class="title">Annual Leave Entitlement<span class="updated-flag">Updated</span></p>
+          <p class="desc">Calculated per the <strong>Hungarian leave formula</strong> (based on age and number of children), plus 1 additional day for every completed year of service, up to a <strong>maximum of 5 additional days</strong> — as outlined in the employment contract.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🚫</div>
+        <div class="body"><p class="title">Untaken Holidays<span class="law-flag">🇭🇺 Per Hungarian Labor Law</span></p>
+          <p class="desc">Annual leave should generally be <strong>taken in the year in which it is earned</strong>. Unused holiday does not normally carry over to the following year, except where permitted or required by Hungarian law. Holiday entitlement <strong>cannot be exchanged for cash during employment</strong>; however, any eligible unused accrued holiday <strong>will be paid out upon termination</strong> of employment, as required by law.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">💸</div>
+        <div class="body"><p class="title">Unpaid Leave<span class="law-flag">🇭🇺 Per Hungarian Labor Law</span></p>
+          <p class="desc">Employees and contractors may request up to <strong>5 working days of discretionary unpaid leave</strong> per calendar year, subject to Company approval. This limit does not apply to statutory unpaid leave or other leave entitlements provided under applicable Hungarian law.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🔄</div>
+        <div class="body"><p class="title">Off-Setting Public Holidays<span class="law-flag">🇭🇺 Per Hungarian Labor Law</span></p>
+          <p class="desc">Requests to work on a public holiday and take an alternative day off may be considered where permitted under applicable local law. Requests must be <strong>submitted in advance and approved by Dori and Mathieu, with Marielle in CC</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏳</span> Overtime &amp; Extra Hours</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⚖️</div>
+        <div class="body"><p class="title">Working Time, Absences &amp; Time Balance<span class="updated-flag">Updated</span></p>
+          <p class="desc">This covers cases where an employee or contractor is <strong>unable to complete their scheduled working hours</strong> due to a personal emergency or another approved reason. Treatment depends on the scenario:</p>
+          <div class="tier-table-wrap">
+            <table class="tier-table">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Treatment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Unfit for work</strong></td>
+                  <td>Sick leave</td>
+                </tr>
+                <tr>
+                  <td><strong>Genuine emergency (Family / Personal)</strong></td>
+                  <td>Deducted from annual leave</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="desc" style="margin-top:8px;">Absence due to illness or any other circumstance covered by a statutory leave entitlement will be treated in accordance with applicable Hungarian law and <strong>will not be considered negative working hours</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🌪️</span> Emergency Provisions</p>
+      <div class="rule-card">
+        <div class="icon-badge">🌪️</div>
+        <div class="body"><p class="title">Natural Calamities &amp; Unplanned Circumstances</p>
+          <p class="desc">If an employee or contractor is unable to attend work due to a natural calamity, severe weather, or another unforeseen or unavoidable circumstance, the absence will first be assessed in accordance with applicable Hungarian law. Where the absence is not otherwise covered by a statutory entitlement or exemption, the following options may be applied, as appropriate:</p>
+          <ul>
+            <li>Use of any eligible additional company-provided days</li>
+            <li>Use of available annual leave</li>
+            <li>Unpaid leave, where applicable</li>
+          </ul>
+          <p class="desc" style="margin-top:8px;">Employees and contractors should notify the Company as soon as reasonably possible if such circumstances prevent them from attending work.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POLAND -->
+  <div class="loc-panel" id="panel-poland">
+    <div class="loc-heading"><span class="flag-big">🇵🇱</span><h2>Poland</h2></div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏰</span> Attendance &amp; Time Tracking</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⏰</div>
+        <div class="body"><p class="title">Attendance &amp; Punctuality<span class="updated-flag">Updated</span></p>
+          <p class="desc">Standard working hours begin <strong>no earlier than 9:00 AM</strong> and <strong>no later than 10:00 AM</strong>, for a <strong>40-hour working week</strong> as outlined in the individual contractor agreement. If you expect to be <strong>more than 30 minutes late</strong>, please <strong>alert management (Mathieu and Marielle)</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🏖️</span> Leave &amp; Holidays</p>
+      <p class="section-intro" style="margin:-4px 0 12px;">Atryos engages its Poland team under independent contractor (B2B) agreements. Under Polish law, statutory paid annual leave and sick leave apply to <strong>employment contracts</strong>, not B2B arrangements — so the entitlements below are the terms Atryos offers contractually, not a legal minimum.</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🤒</div>
+        <div class="body"><p class="title">Sick Leave<span class="updated-flag">Updated</span></p>
+          <p class="desc">Up to <strong>5 days of undocumented sick leave</strong> are permitted per year, per the contractor agreement. A <strong>medical certificate is required</strong> for any sick leave beyond this. If absence extends <strong>beyond 10 consecutive days</strong>, compensation will be discussed directly with the contractor.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">📆</div>
+        <div class="body"><p class="title">Maximum Consecutive Holiday</p>
+          <p class="desc">Up to <strong>21 consecutive week days</strong>, in line with the Company's standard holiday policy.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">➕</div>
+        <div class="body"><p class="title">Annual Leave Entitlement<span class="updated-flag">Updated</span></p>
+          <p class="desc">Accrued at <strong>2 days per month</strong> as per the contractor agreement, plus 1 additional day for every completed year of service, up to a <strong>maximum of 5 additional days</strong>.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🚫</div>
+        <div class="body"><p class="title">Untaken Holidays<span class="updated-flag">Updated</span></p>
+          <p class="desc">Accrued holiday must be <strong>used within 1 year</strong> of the date it was accrued, per the contractor agreement, and <strong>cannot be exchanged for cash</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">💸</div>
+        <div class="body"><p class="title">Unpaid Holidays</p>
+          <p class="desc">Employees and contractors may take unpaid leave, provided the total does not exceed <strong>5 days</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🔄</div>
+        <div class="body"><p class="title">Off-Setting Public Holidays</p>
+          <p class="desc">Welcomed, provided the request is <strong>submitted in advance and approved by Mathieu, with Marielle in CC</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏳</span> Overtime &amp; Extra Hours</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🌙</div>
+        <div class="body"><p class="title">Staying Late to Finish Work<span class="updated-flag">Updated</span></p>
+          <p class="desc">Staying late to finish a task should be <strong>a maximum of 1 hour</strong>. In that case, you may arrive or leave an hour early <strong>later that same week</strong> — except on Fridays. If more than 1 hour is needed, it must be <strong>approved in advance by Mathieu and Marielle</strong>, who will confirm when and how the extra time can be claimed. We encourage avoiding extra hours unless truly critical (e.g. testing a same-day dev release). <strong>Please inform Mathieu, with Marielle in CC</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">⛔</div>
+        <div class="body"><p class="title">No Accumulating Extra Time</p>
+          <p class="desc">Extra hours <strong>cannot be accumulated over a month</strong> to take a full day off — annual leave should be used for that purpose instead.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⚖️</div>
+        <div class="body"><p class="title">Working Time, Absences &amp; Time Balance<span class="updated-flag">Updated</span></p>
+          <p class="desc">This covers cases where an employee or contractor is <strong>unable to complete their scheduled working hours</strong> due to a personal emergency or another approved reason. Treatment depends on the scenario:</p>
+          <div class="tier-table-wrap">
+            <table class="tier-table">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Treatment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Unfit for work</strong></td>
+                  <td>Sick leave</td>
+                </tr>
+                <tr>
+                  <td><strong>Genuine emergency (Family / Personal)</strong></td>
+                  <td>Deducted from annual leave</td>
+                </tr>
+              </tbody>
+            </table>
+          </div></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🌪️</span> Emergency Provisions</p>
+      <div class="rule-card">
+        <div class="icon-badge">🌪️</div>
+        <div class="body"><p class="title">Natural Calamities &amp; Unplanned Circumstances</p>
+          <p class="desc">If an employee or contractor is unable to attend the workplace due to a natural calamity, severe weather, or other unforeseen event, the following will apply, <strong>in order</strong>:</p>
+          <ul>
+            <li>Use of additional eligible days based on tenure</li>
+            <li>Use of available annual leave</li>
+            <li>Unpaid leave, once all other options are exhausted</li>
+          </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANILA -->
+  <div class="loc-panel" id="panel-manila">
+    <div class="loc-heading"><span class="flag-big">🇵🇭</span><h2>Manila</h2></div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">💬</span> Attendance &amp; Communication</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">⏰</div>
+        <div class="body"><p class="title">Attendance &amp; Punctuality<span class="updated-flag">Updated</span></p>
+          <p class="desc">Contractors are expected to follow the schedule agreed with management. If you expect to be <strong>more than 30 minutes late</strong>, please <strong>alert your Manager</strong>.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🟢</div>
+        <div class="body"><p class="title">Active Online Presence<span class="updated-flag">Updated</span></p>
+          <p class="desc">Contractors are expected to <strong>remain active online</strong> to stay connected with the whole team.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🏠</div>
+        <div class="body"><p class="title">Remote Work Policy<span class="updated-flag">Updated</span></p>
+          <p class="desc">Limited to <strong>2 days per year</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🪑</div>
+        <div class="body"><p class="title">Co-Working Space Seating</p>
+          <p class="desc">All contractors should be <strong>seated near one another</strong> in the co-working space to support closer collaboration.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🖥️</div>
+        <div class="body"><p class="title">Time Tracking &amp; ClickUp Tool</p>
+          <p class="desc">Both must be used consistently, <strong>at all times</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">💰</span> Leave &amp; Bonuses</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">📆</div>
+        <div class="body"><p class="title">Maximum Consecutive Holiday<span class="updated-flag">Updated</span></p>
+          <p class="desc">Up to <strong>21 consecutive week days</strong>, made up of unpaid leave plus any available <strong>incentive bonus accrual</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">🚫</div>
+        <div class="body"><p class="title">Untaken Retention Bonus</p>
+          <p class="desc">Unused retention bonus days <strong>do not carry over</strong> to the following year and <strong>cannot be exchanged for cash</strong>.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">💸</div>
+        <div class="body"><p class="title">Unpaid Holidays<span class="updated-flag">Updated</span></p>
+          <p class="desc">Contractors are welcome to take unpaid leave as needed, subject to <strong>approval</strong>. Requests <strong>exceeding 5 days</strong> will be discussed directly with management to assess business needs.</p></div>
+      </div>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">💰</div>
+        <div class="body"><p class="title">Incentive Bonus<span class="updated-flag">Updated</span></p>
+          <p class="desc">A <strong>15-day incentive bonus</strong> accrues at a rate of <strong>1.25 days per month worked</strong>. An advance may be claimed of <strong>up to the equivalent of 3 months of future incentive accrual, rounded up to 4 days</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">⚠️</div>
+        <div class="body"><p class="title">Bonus Forfeiture on Early Departure</p>
+          <p class="desc">Project-based bonuses or incentives <strong>will not be paid</strong> if a contractor departs before the bonus's maturity date (i.e. before passing the testing stage).</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">⏳</span> Overtime &amp; Extra Hours</p>
+      <div class="rule-card is-updated">
+        <div class="icon-badge">🌙</div>
+        <div class="body"><p class="title">Staying Late to Finish Work<span class="updated-flag">Updated</span></p>
+          <p class="desc">Staying late to finish a task should be <strong>a maximum of 1 hour</strong>. In that case, you may arrive or leave an hour early <strong>later that same week</strong> — except on Fridays. If more than 1 hour is needed, it must be <strong>approved in advance by Mathieu and Marielle</strong>, who will confirm when and how the extra time can be claimed. We encourage avoiding extra hours unless truly critical (e.g. testing a same-day dev release). <strong>Please inform Marielle</strong>.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">⛔</div>
+        <div class="body"><p class="title">No Accumulating Extra Time</p>
+          <p class="desc">Extra hours <strong>cannot be accumulated over a month</strong> to take a full day off — available leave should be used for that purpose instead.</p></div>
+      </div>
+      <div class="rule-card">
+        <div class="icon-badge">⚖️</div>
+        <div class="body"><p class="title">Claiming Negative Hours</p>
+          <p class="desc">If an employee or contractor ends their working day early due to illness, an emergency, or another valid reason, the missing hours <strong>must be fully recovered within the same week</strong> and cannot be spread across multiple days. Otherwise, the affected day will be <strong>deducted from their annual leave balance</strong>.</p></div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-title"><span class="icon">🌪️</span> Emergency Provisions</p>
+      <div class="rule-card">
+        <div class="icon-badge">🌪️</div>
+        <div class="body"><p class="title">Natural Calamities &amp; Unplanned Circumstances</p>
+          <p class="desc">If an employee or contractor is unable to attend the workplace due to a natural calamity, severe weather, or other unforeseen event, the following will apply, <strong>in order</strong>:</p>
+          <ul>
+            <li>Use of the contractor's <strong>two (2) Remote Work Credits</strong></li>
+            <li>Use of available retention bonus</li>
+            <li>Unpaid leave, once all other options are exhausted</li>
+          </ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>🏢 <strong>Atryos DMCC</strong> · Astreos International Kft — Internal use only. Please direct any questions to Mathieu or Marielle.</p>
+</footer>
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.loc-chip');
+  var panels = document.querySelectorAll('.loc-panel');
+  var cwContent = document.getElementById('companyWideContent');
+  var cwToggle = document.getElementById('cwToggle');
+  var cwToggleLabel = document.getElementById('cwToggleLabel');
+
+  function setCompanyWideCollapsed(collapsed){
+    cwContent.classList.toggle('collapsed', collapsed);
+    cwToggle.classList.toggle('is-collapsed', collapsed);
+    cwToggle.setAttribute('aria-expanded', String(!collapsed));
+    cwToggleLabel.textContent = collapsed ? 'Expand' : 'Collapse';
+  }
+
+  function showLocation(loc){
+    for (var j = 0; j < chips.length; j++) { chips[j].classList.remove('active'); }
+    var activeChip = document.querySelector('.loc-chip[data-loc="' + loc + '"]');
+    if (activeChip) activeChip.classList.add('active');
+
+    if (loc === 'all') {
+      for (var k = 0; k < panels.length; k++) { panels[k].classList.add('active'); }
+      setCompanyWideCollapsed(false);
+    } else {
+      for (var m = 0; m < panels.length; m++) { panels[m].classList.remove('active'); }
+      var target = document.getElementById('panel-' + loc);
+      if (target) target.classList.add('active');
+      setCompanyWideCollapsed(true);
+    }
+  }
+
+  for (var i = 0; i < chips.length; i++) {
+    chips[i].addEventListener('click', function(e){
+      showLocation(e.currentTarget.getAttribute('data-loc'));
+    });
+  }
+
+  cwToggle.addEventListener('click', function(){
+    setCompanyWideCollapsed(!cwContent.classList.contains('collapsed'));
+  });
+
+  /* Initial state: show all locations, company-wide standards expanded */
+  showLocation('all');
+})();
+</script>
+
+</body>
+</html>
